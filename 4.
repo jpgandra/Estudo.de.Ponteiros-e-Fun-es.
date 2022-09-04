@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+void escrevendo(int *p);
+float maior(int *p, int *m);
+void crescente(int *p, int *pv);
+void mostrar(int *p, int m, float media, int *pv);
+
+main()
+{
+    int m, v[10], vi[10];
+    float me;
+    escrevendo(v);
+    me=maior(v, &m);
+    crescente(v, vi);
+    mostrar(v, m, me, vi);
+    return 0;
+}
+
+void escrevendo(int *p)
+{
+    int i;
+    for(i=0;i<10;i++,p++)
+    {
+        system("cls");
+        printf("\n-----------------Escrevendo-----------------\n");
+        printf("\n|%i|Numero: ", i+1);
+        scanf("%i", p);
+    }
+}
+
+float maior(int *p, int *m)
+{
+    int i=0, y=0, j=0;
+    int media=0;
+    (*m)=*p;
+    for(i=0;i<10;i++,p++)
+    {
+        media+=*p;
+        if(*p>*m)
+            (*m)=*p;
+    }
+    return (media/10);
+}
+
+void crescente(int *p, int *pv)
+{
+    int i, j, y;
+    for(y=0;y<10;y++, pv++)
+    {
+        *pv=*p;
+        for(j=0;j<10;j++, p++)
+        {
+            if(*p<*pv)
+                *pv=*p;
+        }
+        p-=10;
+    }
+    pv-=10;
+    for(i=0;i<10;i++, pv++)
+    {
+        for(j=0;j<10;j++, p++)
+        {
+            if(i==0&&*p>*pv)
+                *pv=*p;
+            if(*p>*pv&&*p<*(pv-1))
+                *pv=*p;
+        }
+        p-=10;
+    }
+}
+
+void mostrar(int *p, int m, float media, int *pv)
+{
+    system("cls");
+    printf("\n-----------------Resultado-----------------\n");
+    int i;
+    for(i=0;i<10;i++,p++)
+    {
+        printf("\n|%i|Numero=%i", i+1,*p);
+    }
+    printf("\nMaior Numero=%i --- Media=%.2f", m, media);
+    getch();
+    printf("\n-------------Ordem Decrescente-------------\n");
+    for(i=0;i<10;i++,pv++)
+    {
+        printf("\n|%i|Numero=%i", i+1,*pv);
+    }
+    getch();
+}
