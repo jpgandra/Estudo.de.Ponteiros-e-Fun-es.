@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void escrever(char *p, int *px);
+void virar(char *p, int x);
+void mostrar(char *p);
+
+int main()
+{
+    char string[100];
+    int x;
+    escrever(string, &x);
+    virar(string, x);
+    printf("\n||String Invertida:%s\n", string);
+    return 0;
+}
+
+
+
+void escrever(char *p, int *px)
+{
+    printf("\n||Escreva a String: ");
+    gets(p);
+    fflush(stdin);
+    *px=strlen(p);
+    system("cls");
+}
+
+
+
+void virar(char *p, int x)
+{
+    int i;
+    char stringinv[100];
+    char *ip=stringinv;
+    printf("\n-------------Invertendo-------------\n");
+    getch();
+    ip+=x-1;
+    *ip='\0';
+    for(i=0;i<x;i++, p++)
+    {
+        ip--;
+        *ip= *p;
+    }
+    p-=i;
+    for(i=0;i<x;i++, p++, ip++)
+    {
+        *p= *ip;
+    }
+    system("cls");
+}
